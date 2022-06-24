@@ -4,9 +4,9 @@
 
 <div class="row"> 
 <div class="col-sm-12"> 
-    <h1 class="display-3">Contacts</h1>  
+    <h1 class="display-3">Products</h1>  
     <div> 
-    <a style="margin: 15px;" href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a> 
+    <a style="margin: 15px;" href="{{ route('products.create')}}" class="btn btn-primary">New product</a> 
     <br></br>
     </div>    
   <table class="table table-striped"> 
@@ -14,27 +14,25 @@
         <tr> 
           <td>ID</td> 
           <td>Name</td> 
-          <td>Email</td> 
-          <td>Job Title</td> 
-          <td>City</td> 
-          <td>Country</td> 
+          <td>Type</td> 
+          <td>Category</td> 
+          <td>Price</td> 
           <td colspan = 2>Actions</td> 
         </tr> 
     </thead> 
     <tbody> 
-        @foreach($contacts as $contact) 
+        @foreach($products as $product) 
         <tr> 
-            <td>{{$contact->id}}</td> 
-            <td>{{$contact->first_name}} {{$contact->last_name}}</td> 
-            <td>{{$contact->email}}</td> 
-            <td>{{$contact->job_title}}</td> 
-            <td>{{$contact->city}}</td> 
-            <td>{{$contact->country}}</td> 
+            <td>{{$product->id}}</td> 
+            <td>{{$product->name}}</td> 
+            <td>{{$product->type}}</td> 
+            <td>{{$product->category}}</td> 
+            <td>{{$product->price}}</td>  
             <td> 
-                <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a> 
+                <a href="{{ route('products.edit',$product->id)}}" class="btn btn-primary">Edit</a> 
             </td> 
             <td> 
-                <form action="{{ route('contacts.destroy', $contact->id)}}" method="post"> 
+                <form action="{{ route('products.destroy', $product->id)}}" method="post"> 
                   @csrf 
                   @method('DELETE') 
                   <button class="btn btn-danger" type="submit">Delete</button> 
