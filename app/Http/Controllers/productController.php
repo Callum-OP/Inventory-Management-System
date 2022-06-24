@@ -17,7 +17,7 @@ class productController extends Controller
     { 
         $product = Product::all(); 
 
-return view('inventory.index', compact('inventory')); 
+        return view('products.index', compact('product')); 
 
 } 
 
@@ -28,7 +28,7 @@ return view('inventory.index', compact('inventory'));
      */ 
     public function create() 
     { 
-        return view('inventory.create'); 
+        return view('products.create'); 
     }
 
 /** 
@@ -46,14 +46,14 @@ return view('inventory.index', compact('inventory'));
             'price'=>'required' 
         ]); 
 
-$product = new Product</p></i></i>([ 
+        $product = new Product([ 
             'name' => $request->get('name'), 
             'type' => $request->get('type'), 
             'category' => $request->get('category'), 
             'price' => $request->get('price'), 
         ]); 
         $product->save(); 
-        return redirect('/inventory')->with('success', 'Product saved!'); 
+        return redirect('/products')->with('success', 'Product saved!'); 
     } 
 
 /** 
@@ -64,7 +64,7 @@ $product = new Product</p></i></i>([
      */ 
     public function show($id) 
     { 
-        return view('inventory.show', compact('id'));         
+        return view('products.show', compact('id'));         
     } 
 
 /** 
@@ -76,7 +76,7 @@ $product = new Product</p></i></i>([
     public function edit($id) 
     { 
         $product = Product::find($id); 
-        return view('inventory.edit', compact('product'));         
+        return view('products.edit', compact('product'));         
     } 
 
 /** 
@@ -91,7 +91,7 @@ $product = new Product</p></i></i>([
         $request->validate([ 
             'name'=>'required', 
             'type'=>'required', 
-            'category'=>'required' 
+            'category'=>'required',
             'price'=>'required' 
         ]); 
 
@@ -102,7 +102,7 @@ $product = new Product</p></i></i>([
         $product->price = $request->get('price'); 
         $product->save(); 
 
-        return redirect('/inventory')->with('success', 'Product updated!'); 
+        return redirect('/products')->with('success', 'Product updated!'); 
     }
 
 /** 
@@ -116,6 +116,6 @@ $product = new Product</p></i></i>([
         $product = Product::find($id); 
         $product->delete(); 
 
-        return redirect('/inventory')->with('success', 'Product deleted!');
+        return redirect('/products')->with('success', 'Product deleted!');
     }  
 } 
