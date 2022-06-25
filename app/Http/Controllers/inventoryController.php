@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 
-use App\Product; 
+use App\Inventory; 
 
-class productController extends Controller 
+class inventoryController extends Controller 
 { 
     /** 
      * Display a listing of the resource. 
@@ -15,9 +15,9 @@ class productController extends Controller
      */ 
     public function index() 
     { 
-        $product = Product::all(); 
+        $product = Inventory::all(); 
 
-        return view('products.index', compact('product')); 
+        return view('inventory.index', compact('product')); 
 
 } 
 
@@ -28,7 +28,7 @@ class productController extends Controller
      */ 
     public function create() 
     { 
-        return view('products.create'); 
+        return view('inventory.create'); 
     }
 
 /** 
@@ -43,17 +43,19 @@ class productController extends Controller
             'name'=>'required', 
             'type'=>'required', 
             'category'=>'required',
-            'price'=>'required' 
+            'price'=>'required', 
+            'amount'=>'required' 
         ]); 
 
-        $product = new Product([ 
+        $product = new Inventory([ 
             'name' => $request->get('name'), 
             'type' => $request->get('type'), 
             'category' => $request->get('category'), 
             'price' => $request->get('price'), 
+            'amount' => $request->get('amount'), 
         ]); 
         $product->save(); 
-        return redirect('/products')->with('success', 'Product saved!'); 
+        return redirect('/inventory')->with('success', 'Product added!'); 
     } 
 
 /** 
@@ -64,7 +66,7 @@ class productController extends Controller
      */ 
     public function show($id) 
     { 
-        return view('products.show', compact('id'));         
+        return view('inventory.show', compact('id'));         
     } 
 
 /** 
@@ -75,8 +77,8 @@ class productController extends Controller
      */ 
     public function edit($id) 
     { 
-        $product = Product::find($id); 
-        return view('products.edit', compact('product'));         
+        $product = Inventory::find($id); 
+        return view('inventory.edit', compact('product'));         
     } 
 
 /** 
@@ -92,17 +94,19 @@ class productController extends Controller
             'name'=>'required', 
             'type'=>'required', 
             'category'=>'required',
-            'price'=>'required' 
+            'price'=>'required',
+            'amount'=>'required' 
         ]); 
 
-        $product = Product::find($id); 
+        $product = Inventory::find($id); 
         $product->name =  $request->get('name'); 
         $product->type = $request->get('type'); 
         $product->category = $request->get('category'); 
         $product->price = $request->get('price'); 
+        $product->price = $request->get('amount'); 
         $product->save(); 
 
-        return redirect('/products')->with('success', 'Product updated!'); 
+        return redirect('/inventory')->with('success', 'Product updated!'); 
     }
 
 /** 
@@ -113,9 +117,9 @@ class productController extends Controller
      */ 
     public function destroy($id) 
     { 
-        $product = Product::find($id); 
+        $product = Inventory::find($id); 
         $product->delete(); 
 
-        return redirect('/products')->with('success', 'Product deleted!');
+        return redirect('/inventory')->with('success', 'Product deleted!');
     }  
 } 

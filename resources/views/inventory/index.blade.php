@@ -6,7 +6,7 @@
 <div class="col-sm-12"> 
     <h1 class="display-3">Products</h1>  
     <div> 
-    <a style="margin: 15px;" href="{{ route('products.create')}}" class="btn btn-primary">New product</a> 
+    <a href="{{ route('inventory.create')}}" class="btn btn-white">New product</a> 
     <br></br>
     </div>    
   <table class="table table-striped"> 
@@ -17,6 +17,7 @@
           <td>Type</td> 
           <td>Category</td> 
           <td>Price</td> 
+          <td>In Stock</td>
           <td colspan = 2>Actions</td> 
         </tr> 
     </thead> 
@@ -26,16 +27,17 @@
             <td>{{$product->id}}</td> 
             <td>{{$product->name}}</td> 
             <td>{{$product->type}}</td> 
-            <td>{{$product->category}}</td> 
+            <td>{{$product->category}}</td>  
             <td>{{$product->price}}</td>  
+            <td>{{$product->amount}}</td>
             <td> 
-                <a href="{{ route('products.edit',$product->id)}}" class="btn btn-primary">Edit</a> 
+                <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit</a> 
             </td> 
             <td> 
-                <form action="{{ route('products.destroy', $product->id)}}" method="post"> 
+                <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
                   @csrf 
                   @method('DELETE') 
-                  <button class="btn btn-danger" type="submit">Delete</button> 
+                  <button class="btn btn-red" type="submit">Delete</button> 
                 </form> 
             </td> 
         </tr> 

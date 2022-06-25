@@ -13,26 +13,37 @@
         </div> 
         <br />  
         @endif 
-        <form method="post" action="{{ route('products.update', $product->id) }}"> 
+        <form method="post" action="{{ route('inventory.update', $product->id) }}"> 
             @method('PATCH')  
             @csrf 
             <div class="form-group"> 
-<label for="name">Product Name:</label> 
+            <label for="name">Product Name:</label> 
                 <input type="text" class="form-control" name="name" value={{ $product->name }} /> 
             </div> 
-<div class="form-group"> 
+            <div class="form-group"> 
                 <label for="type">Product Type:</label> 
                 <input type="text" class="form-control" name="type" value={{ $product->type }} /> 
             </div> 
-<div class="form-group"> 
-                <label for="category">Product Category:</label> 
-                <input type="text" class="form-control" name="category" value={{ $product->category }} /> 
+            <div class="form-group"> 
+              <label for="category">Choose Category:</label> 
+              <select class="form-control" name="category">
+              <option value="Food & Drink">Food & Drink</option>
+              <option value="Health & Beauty">Health & Beauty</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Household">Household</option>
+              <option value="Gardening">Gardening</option>
+              <option value="Pet">Pet</option>
+              </select>
             </div> 
             <div class="form-group"> 
                 <label for="price">Product Price:</label> 
                 <input type="text" class="form-control" name="price" value={{ $product->price }} /> 
             </div> 
-            <button type="submit" class="btn btn-primary">Update</button> 
+            <div class="form-group"> 
+              <label for="amount">Amount of Product:</label> 
+              <input type="number" class="form-control" name="amount" value={{ $product->amount }}> 
+          </div>
+            <button type="submit" class="btn btn-white">Update</button> 
         </form> 
     </div> 
 </div> 
