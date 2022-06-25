@@ -15,10 +15,9 @@ class inventoryController extends Controller
      */ 
     public function index() 
     { 
-        $product = Inventory::all(); 
+        $inventory = Inventory::all(); 
 
-        return view('inventory.index', compact('product')); 
-
+        return view('inventory.index', compact('inventory')); 
 } 
 
 /** 
@@ -47,14 +46,14 @@ class inventoryController extends Controller
             'amount'=>'required' 
         ]); 
 
-        $product = new Inventory([ 
+        $inventory = new Inventory([ 
             'name' => $request->get('name'), 
             'type' => $request->get('type'), 
             'category' => $request->get('category'), 
             'price' => $request->get('price'), 
             'amount' => $request->get('amount'), 
         ]); 
-        $product->save(); 
+        $inventory->save(); 
         return redirect('/inventory')->with('success', 'Product added!'); 
     } 
 
@@ -77,8 +76,8 @@ class inventoryController extends Controller
      */ 
     public function edit($id) 
     { 
-        $product = Inventory::find($id); 
-        return view('inventory.edit', compact('product'));         
+        $inventory = Inventory::find($id); 
+        return view('inventory.edit', compact('inventory'));         
     } 
 
 /** 
@@ -98,13 +97,13 @@ class inventoryController extends Controller
             'amount'=>'required' 
         ]); 
 
-        $product = Inventory::find($id); 
-        $product->name =  $request->get('name'); 
-        $product->type = $request->get('type'); 
-        $product->category = $request->get('category'); 
-        $product->price = $request->get('price'); 
-        $product->price = $request->get('amount'); 
-        $product->save(); 
+        $inventory = Inventory::find($id); 
+        $inventory->name =  $request->get('name'); 
+        $inventory->type = $request->get('type'); 
+        $inventory->category = $request->get('category'); 
+        $inventory->price = $request->get('price'); 
+        $inventory->amount = $request->get('amount'); 
+        $inventory->save(); 
 
         return redirect('/inventory')->with('success', 'Product updated!'); 
     }
@@ -117,8 +116,8 @@ class inventoryController extends Controller
      */ 
     public function destroy($id) 
     { 
-        $product = Inventory::find($id); 
-        $product->delete(); 
+        $inventory = Inventory::find($id); 
+        $inventory->delete(); 
 
         return redirect('/inventory')->with('success', 'Product deleted!');
     }  

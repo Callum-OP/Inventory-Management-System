@@ -1,54 +1,173 @@
 @extends('base') 
-
 @section('main') 
-
-<div class="row"> 
-<div class="col-sm-12"> 
-    <h1 class="display-3">Products</h1>  
-    <div> 
-    <a href="{{ route('inventory.create')}}" class="btn btn-white">New product</a> 
-    <br></br>
-    </div>    
-  <table class="table table-striped"> 
-    <thead> 
+<div>
+  <a href="/" class="btn btn-white">Main Menu</a>
+  <a href="{{ route('inventory.create')}}" class="btn btn-white">Add a new product</a>
+  <h1>Products By Category</h1> 
+    <!-- Navigation bar for user to select which category they want --> 
+  <div> 
+    <a href="#Food & Drink" class="btn btn-white">Food & Drink</a>
+    <a href="#Health & Beauty" class="btn btn-white">Health & Beauty</a>
+    <a href="#Clothing" class="btn btn-white">Clothing</a>
+    <a href="#Household" class="btn btn-white">Household</a>
+    <br><br>
+  </div>  
+  @if(session()->get('success')) 
+    <div class="alert"> 
+      {{ session()->get('success') }}   
+    </div> 
+  @endif  
+  <br>
+  <!-- Display products in the food and drink category -->
+  <div class="border">
+  <h2 id="Food & Drink">Food & Drink</h2>
+    <table>
+      <thead> 
+          <tr> 
+            <td>Name</td> 
+            <td>Type</td>  
+            <td>Price</td> 
+            <td>In Stock</td>
+            <td colspan = 2>Actions</td> 
+          </tr> 
+      </thead> 
+      <tbody> 
+        @foreach($inventory as $product)
+        @if($product->category=='Food & Drink')
+          <tr> 
+            <td>{{$product->name}}</td> 
+            <td>{{$product->type}}</td>  
+            <td>{{$product->price}}</td>  
+            <td>{{$product->amount}}</td>
+            <td> 
+              <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
+            </td> 
+            <td> 
+              <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
+                @csrf 
+                @method('DELETE') 
+                <button class="btn btn-red" type="submit">Remove Product</button> 
+              </form> 
+            </td> 
+          </tr> 
+      @endif 
+      @endforeach
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <!-- Display products in the health and beauty category -->
+  <div class="border">
+  <h2 id="Health & Beauty">Health & Beauty</h2>
+    <table>
+      <thead> 
         <tr> 
-          <td>ID</td> 
           <td>Name</td> 
-          <td>Type</td> 
-          <td>Category</td> 
+          <td>Type</td>  
           <td>Price</td> 
           <td>In Stock</td>
           <td colspan = 2>Actions</td> 
         </tr> 
-    </thead> 
-    <tbody> 
-        @foreach($product as $product) 
+      </thead>
+      <tbody> 
+      @foreach($inventory as $product)
+      @if($product->category=='Health & Beauty')
         <tr> 
-            <td>{{$product->id}}</td> 
-            <td>{{$product->name}}</td> 
-            <td>{{$product->type}}</td> 
-            <td>{{$product->category}}</td>  
-            <td>{{$product->price}}</td>  
-            <td>{{$product->amount}}</td>
-            <td> 
-                <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit</a> 
-            </td> 
-            <td> 
-                <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
-                  @csrf 
-                  @method('DELETE') 
-                  <button class="btn btn-red" type="submit">Delete</button> 
-                </form> 
-            </td> 
+          <td>{{$product->name}}</td> 
+          <td>{{$product->type}}</td>  
+          <td>{{$product->price}}</td>  
+          <td>{{$product->amount}}</td>
+          <td> 
+            <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
+          </td> 
+          <td> 
+            <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
+              @csrf 
+              @method('DELETE') 
+              <button class="btn btn-red" type="submit">Remove Product</button> 
+            </form> 
+          </td> 
         </tr> 
-        @endforeach 
-    </tbody> 
-  </table> 
-  @if(session()->get('success')) 
-    <div class="alert alert-success"> 
-      {{ session()->get('success') }}   
-    </div> 
-  @endif
-<div> 
+      @endif 
+      @endforeach
+      </tbody> 
+    </table> 
+  </div>
+  <br>
+  <!-- Display products in the clothing category -->
+  <div class="border">
+  <h2 id="Clothing">Clothing</h2>
+    <table>
+      <thead> 
+        <tr> 
+          <td>Name</td> 
+          <td>Type</td>  
+          <td>Price</td> 
+          <td>In Stock</td>
+          <td colspan = 2>Actions</td> 
+        </tr> 
+      </thead>
+      <tbody> 
+      @foreach($inventory as $product)
+      @if($product->category=='Clothing')
+        <tr> 
+          <td>{{$product->name}}</td> 
+          <td>{{$product->type}}</td>  
+          <td>{{$product->price}}</td>  
+          <td>{{$product->amount}}</td>
+          <td> 
+            <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
+          </td> 
+          <td> 
+            <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
+              @csrf 
+              @method('DELETE') 
+              <button class="btn btn-red" type="submit">Remove Product</button> 
+            </form> 
+          </td> 
+        </tr> 
+      @endif 
+      @endforeach
+      </tbody> 
+    </table> 
+  </div>
+  <br>
+  <!-- Display products in the household category -->
+  <div class="border">
+  <h2 id="Household">Household</h2>
+    <table>
+      <thead> 
+        <tr> 
+          <td>Name</td> 
+          <td>Type</td>  
+          <td>Price</td> 
+          <td>In Stock</td>
+          <td colspan = 2>Actions</td> 
+        </tr> 
+      </thead>
+      <tbody> 
+      @foreach($inventory as $product)
+      @if($product->category=='Household')
+        <tr> 
+          <td>{{$product->name}}</td> 
+          <td>{{$product->type}}</td>  
+          <td>{{$product->price}}</td>  
+          <td>{{$product->amount}}</td>
+          <td> 
+            <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
+          </td> 
+          <td> 
+            <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
+              @csrf 
+              @method('DELETE') 
+              <button class="btn btn-red" type="submit">Remove Product</button> 
+            </form> 
+          </td> 
+        </tr> 
+      @endif 
+      @endforeach
+      </tbody> 
+    </table> 
+  </div>
 </div> 
 @endsection 

@@ -1,23 +1,14 @@
 html, body{
     background-color:#f6f6f6;
-    color: #636b6f;
+    color: black;
     font-family: Arial, sans-serif;
-    font-weight: 200;
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
+    padding: 10px;
   }
-  .content {
-    text-align: center;
-  }
-  .title {
-    font-size: 84px;
-    margin-bottom: 30px;
+  h1, h2 {
+  font: Arial;
   }
   .btn{
-    font: bold 13px Arial;
-    text-decoration: none;
-    letter-spacing: .1rem;
+    font: 13px Arial;
     text-decoration: none;
     text-transform: uppercase;
     padding: 8px 8px 8px 8px;
@@ -25,7 +16,7 @@ html, body{
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
-    color: #636b6f;
+    color: black;
     border-radius: 4px;
   }
   .btn:hover {
@@ -38,19 +29,21 @@ html, body{
   }
   .btn-white {
     background-color: #fff;
-    color: #636b6f;
   }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
+  .border {
+    border-style: solid;
+    padding: 20px;
   }
-  thead {
-    background-color: #f2f2f2;
+  .alert {
+    color: #c00000;
+    border-style: dotted;
+    padding: 20px;
   }
   table {
-    border-collapse: collapse;
     width: 100%;
-    padding: 40px;
+  }
+  thead, tbody>tr:nth-child(even) {
+    background-color: #e1e1e1;
   }
   input[type=text], input[type=number], select {
     width: 100%;
@@ -71,8 +64,4 @@ html, body{
   input[type=submit]:hover {
     background-color: #333333;
     color: white;
-  }
-  .alert {
-    text-align: center;
-    margin: 20px;
   }

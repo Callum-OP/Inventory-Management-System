@@ -1,15 +1,10 @@
-
-
 @extends('base') 
-
 @section('main') 
-
-<div class="row"> 
-<div class="col-sm-8 offset-sm-2"> 
-    <h1 class="display-3">Add a product</h1> 
+<div>
+    <h1>Add a product</h1> 
   <div> 
     @if ($errors->any()) 
-      <div class="alert alert-danger"> 
+      <div> 
         <ul> 
             @foreach ($errors->all() as $error) 
               <li>{{ $error }}</li> 
@@ -17,6 +12,7 @@
         </ul> 
       </div><br /> 
     @endif 
+    <div class="border"> 
       <form method="post" action="{{ route('inventory.store') }}"> 
           @csrf 
           <div class="form-group">     
@@ -34,8 +30,6 @@
               <option value="Health & Beauty">Health & Beauty</option>
               <option value="Clothing">Clothing</option>
               <option value="Household">Household</option>
-              <option value="Gardening">Gardening</option>
-              <option value="Pet">Pet</option>
               </select>
           </div> 
           <div class="form-group"> 
@@ -47,8 +41,9 @@
               <input type="number" class="form-control" name="amount" autocomplete="off" required> 
           </div>
           <button type="submit" class="btn btn-white">Add product</button> 
+          <a href="/inventory" class="btn btn-red">Cancel</a>
       </form> 
+    </div>
   </div> 
-</div> 
 </div> 
 @endsection 
