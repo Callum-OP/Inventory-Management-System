@@ -2,15 +2,15 @@
 @section('main') 
 <div>
     <h1>Update a product</h1> 
-@if ($errors->any()) 
-    <div> 
-        <ul> 
+    @if ($errors->any()) 
+      <div class="alert"> 
+      <p>Failed to update product!<p>
+        <ul>  
             @foreach ($errors->all() as $error) 
-            <li>{{ $error }}</li> 
+              <li>{{ $error }}</li> 
             @endforeach 
         </ul> 
-    </div> 
-    <br />  
+      </div><br/> 
     @endif 
     <div class="border">
     <form method="post" action="{{ route('inventory.update', $inventory->id) }}"> 
@@ -18,11 +18,11 @@
         @csrf 
         <div class="form-group"> 
         <label for="name">Product Name:</label> 
-            <input type="text" class="form-control" name="name" value="{{ $inventory->name }}" /> 
+            <input type="text" class="form-control" name="name" placeholder="Enter name of product" value="{{ $inventory->name }}" /> 
         </div> 
         <div class="form-group"> 
             <label for="type">Product Type:</label> 
-            <input type="text" class="form-control" name="type" value="{{ $inventory->type }}" /> 
+            <input type="text" class="form-control" name="type" placeholder="Enter the type of product" value="{{ $inventory->type }}" /> 
         </div> 
         <div class="form-group"> 
             <label for="category">Choose Category:</label> 
@@ -35,11 +35,11 @@
         </div> 
         <div class="form-group"> 
             <label for="price">Product Price:</label> 
-            <input type="text" class="form-control" name="price" value="{{ $inventory->price }}" /> 
+            <input type="text" class="form-control" name="price" placeholder="Enter price of product to be added" value="{{ $inventory->price }}" /> 
         </div> 
         <div class="form-group"> 
             <label for="amount">Amount of Product:</label> 
-            <input type="number" class="form-control" name="amount" value="{{ $inventory->amount }}" /> 
+            <input type="number" class="form-control" name="amount" placeholder="Enter amount of product to be added" value="{{ $inventory->amount }}" /> 
         </div>
         <button type="submit" class="btn btn-white">Update Product</button> 
         <a href="/inventory" class="btn btn-red">Cancel</a>

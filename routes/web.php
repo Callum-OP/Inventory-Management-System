@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Inventory; 
+use Symfony\Component\Console\Input\Input;
  
 Route::get('/', function () { 
     return view('welcome'); 

@@ -7,17 +7,16 @@ html, body{
   h1, h2 {
   font: Arial;
   }
-  .btn{
-    font: 13px Arial;
+  .btn, .form-search {
+    font: 15px Arial;
     text-decoration: none;
-    text-transform: uppercase;
-    padding: 8px 8px 8px 8px;
     border-top: 1px solid #CCCCCC;
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
     color: black;
     border-radius: 4px;
+    padding: 4px 8px 4px 8px;
   }
   .btn:hover {
     background-color: #CCCCCC;
@@ -45,7 +44,7 @@ html, body{
   thead, tbody>tr:nth-child(even) {
     background-color: #e1e1e1;
   }
-  input[type=text], input[type=number], select {
+  .form-control {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;

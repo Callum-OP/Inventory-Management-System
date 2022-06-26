@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="inventory/"><b>Inventory</b></a>
+                    <a href="inventory/"><b>Access Inventory</b></a>
                 </div>
 
                 <div>

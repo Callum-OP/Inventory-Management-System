@@ -19,8 +19,8 @@
   @endif  
   <br>
   <!-- Display products in the food and drink category -->
-  <div class="border">
-  <h2 id="Food & Drink">Food & Drink</h2>
+  <div id="Food & Drink" class="border">
+  <h2>Food & Drink</h2>
     <table>
       <thead> 
           <tr> 
@@ -28,7 +28,7 @@
             <td>Type</td>  
             <td>Price</td> 
             <td>In Stock</td>
-            <td colspan = 2>Actions</td> 
+            <td colspan = 2>Modify Product</td> 
           </tr> 
       </thead> 
       <tbody> 
@@ -37,8 +37,8 @@
           <tr> 
             <td>{{$product->name}}</td> 
             <td>{{$product->type}}</td>  
-            <td>{{$product->price}}</td>  
-            <td>{{$product->amount}}</td>
+            <td>£{{$product->price}}</td>  
+            <td>{{$product->amount}}</td> 
             <td> 
               <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
             </td> 
@@ -57,8 +57,8 @@
   </div>
   <br>
   <!-- Display products in the health and beauty category -->
-  <div class="border">
-  <h2 id="Health & Beauty">Health & Beauty</h2>
+  <div id="Health & Beauty" class="border">
+  <h2>Health & Beauty</h2>
     <table>
       <thead> 
         <tr> 
@@ -75,7 +75,7 @@
         <tr> 
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
-          <td>{{$product->price}}</td>  
+          <td>£{{$product->price}}</td>  
           <td>{{$product->amount}}</td>
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
@@ -95,8 +95,8 @@
   </div>
   <br>
   <!-- Display products in the clothing category -->
-  <div class="border">
-  <h2 id="Clothing">Clothing</h2>
+  <div id="Clothing" class="border">
+  <h2>Clothing</h2>
     <table>
       <thead> 
         <tr> 
@@ -113,7 +113,7 @@
         <tr> 
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
-          <td>{{$product->price}}</td>  
+          <td>£{{$product->price}}</td>  
           <td>{{$product->amount}}</td>
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
@@ -133,8 +133,8 @@
   </div>
   <br>
   <!-- Display products in the household category -->
-  <div class="border">
-  <h2 id="Household">Household</h2>
+  <div id="Household" class="border">
+  <h2>Household</h2>
     <table>
       <thead> 
         <tr> 
@@ -151,7 +151,7 @@
         <tr> 
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
-          <td>{{$product->price}}</td>  
+          <td>£{{$product->price}}</td>  
           <td>{{$product->amount}}</td>
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 

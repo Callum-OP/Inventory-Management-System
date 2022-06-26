@@ -3,6 +3,7 @@
 namespace App\Http\Controllers; 
 
 use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\DB;
 
 use App\Inventory; 
 
@@ -27,7 +28,7 @@ class inventoryController extends Controller
      */ 
     public function create() 
     { 
-        return view('inventory.create'); 
+        return view('inventory.create');
     }
 
 /** 
@@ -39,11 +40,11 @@ class inventoryController extends Controller
     public function store(Request $request) 
     { 
         $request->validate([ 
-            'name'=>'required', 
-            'type'=>'required', 
+            'name'=>'required|max:25',
+            'type'=>'required|max:25', 
             'category'=>'required',
-            'price'=>'required', 
-            'amount'=>'required' 
+            'price'=>'required|numeric|between:0,9999.99', 
+            'amount'=>'required|between:0,999999' 
         ]); 
 
         $inventory = new Inventory([ 
@@ -55,17 +56,6 @@ class inventoryController extends Controller
         ]); 
         $inventory->save(); 
         return redirect('/inventory')->with('success', 'Product added!'); 
-    } 
-
-/** 
-     * Display the specified resource. 
-     * 
-     * @param  int  $id 
-     * @return \Illuminate\Http\Response 
-     */ 
-    public function show($id) 
-    { 
-        return view('inventory.show', compact('id'));         
     } 
 
 /** 
@@ -90,11 +80,11 @@ class inventoryController extends Controller
     public function update(Request $request, $id) 
     { 
         $request->validate([ 
-            'name'=>'required', 
-            'type'=>'required', 
+            'name'=>'required|max:25',
+            'type'=>'required|max:25', 
             'category'=>'required',
-            'price'=>'required',
-            'amount'=>'required' 
+            'price'=>'required|numeric|between:0,9999.99', 
+            'amount'=>'required|between:0,999999' 
         ]); 
 
         $inventory = Inventory::find($id); 
@@ -102,7 +92,7 @@ class inventoryController extends Controller
         $inventory->type = $request->get('type'); 
         $inventory->category = $request->get('category'); 
         $inventory->price = $request->get('price'); 
-        $inventory->amount = $request->get('amount'); 
+        $inventory->amount = $request->get('amount');
         $inventory->save(); 
 
         return redirect('/inventory')->with('success', 'Product updated!'); 
