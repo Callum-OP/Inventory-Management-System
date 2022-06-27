@@ -37,11 +37,15 @@
           <tr> 
             <td>{{$product->name}}</td> 
             <td>{{$product->type}}</td>  
-            <td>£{{$product->price}}</td>  
+            <td>£{{$product->price}}</td> 
+            @if($product->amount>'0') 
             <td>{{$product->amount}}</td> 
+            @else
+            <td>Out of Stock!</td> 
+            @endif 
             <td> 
-              <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
-            </td> 
+              <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Details</a> 
+            </td>
             <td> 
               <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
                 @csrf 
@@ -76,7 +80,11 @@
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
           <td>£{{$product->price}}</td>  
-          <td>{{$product->amount}}</td>
+          @if($product->amount>'0') 
+          <td>{{$product->amount}}</td> 
+          @else
+          <td>Out of Stock!</td> 
+          @endif 
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
           </td> 
@@ -114,7 +122,11 @@
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
           <td>£{{$product->price}}</td>  
-          <td>{{$product->amount}}</td>
+          @if($product->amount>'0') 
+          <td>{{$product->amount}}</td> 
+          @else
+          <td>Out of Stock!</td> 
+          @endif 
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
           </td> 
@@ -152,7 +164,11 @@
           <td>{{$product->name}}</td> 
           <td>{{$product->type}}</td>  
           <td>£{{$product->price}}</td>  
-          <td>{{$product->amount}}</td>
+          @if($product->amount>'0') 
+          <td>{{$product->amount}}</td> 
+          @else
+          <td>Out of Stock!</td> 
+          @endif 
           <td> 
             <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Product Details</a> 
           </td> 
