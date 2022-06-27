@@ -1,5 +1,9 @@
 @extends('base') 
-@section('main') 
+@section('main')
+<!-- Intialise array of categories --> 
+@php
+  $categories = array('Food & Drink', 'Health & Beauty', 'Clothing', 'Household', 'Electronics');
+@endphp 
 <div>
     <h1>Add a product</h1> 
   <div> 
@@ -17,29 +21,32 @@
       <form method="post" action="{{ route('inventory.store') }}"> 
           @csrf 
           <div class="form-group">     
+              <label for="brand">Product Brand:</label> 
+              <input type="text" class="form-control" name="brand" placeholder="Enter brand of product" autocomplete="off" required/> 
+          </div> 
+          <div class="form-group">     
               <label for="name">Product Name:</label> 
-              <input type="text" class="form-control" name="name" placeholder="Enter name of product" autocomplete="off" required> 
+              <input type="text" class="form-control" name="name" placeholder="Enter name of product" autocomplete="off" required/> 
           </div> 
           <div class="form-group"> 
               <label for="type">Product Type:</label> 
-              <input type="text" class="form-control" name="type" placeholder="Enter the type of product" autocomplete="off" required> 
+              <input type="text" class="form-control" name="type" placeholder="Enter the type of product" autocomplete="off" required/> 
           </div> 
           <div class="form-group"> 
               <label for="category">Choose Category:</label> 
               <select class="form-control" name="category">
-              <option value="Food & Drink">Food & Drink</option>
-              <option value="Health & Beauty">Health & Beauty</option>
-              <option value="Clothing">Clothing</option>
-              <option value="Household">Household</option>
+              @foreach($categories as $category)
+              <option value={{$category}}>{{$category}}</option>
+              @endforeach
               </select>
           </div> 
           <div class="form-group"> 
               <label for="price">Product Price:</label> 
-              <input type="text" class="form-control" name="price" placeholder="Enter price of product to be added" autocomplete="off" required> 
+              <input type="text" class="form-control" name="price" placeholder="Enter price of product to be added" autocomplete="off" required/> 
           </div> 
           <div class="form-group"> 
               <label for="amount">Amount of Product:</label> 
-              <input type="number" class="form-control" name="amount" placeholder="Enter amount of product to be added" autocomplete="off" required> 
+              <input type="number" class="form-control" name="amount" placeholder="Enter amount of product to be added" autocomplete="off" required/> 
           </div>
           <button type="submit" class="btn btn-white">Add product</button> 
           <a href="/inventory" class="btn btn-red">Cancel</a>

@@ -19,7 +19,7 @@ class inventoryController extends Controller
         $inventory = Inventory::all(); 
 
         return view('inventory.index', compact('inventory')); 
-} 
+    } 
 
 /** 
      * Show the form for creating a new resource. 
@@ -40,14 +40,16 @@ class inventoryController extends Controller
     public function store(Request $request) 
     { 
         $request->validate([ 
+            'brand'=>'required|max:25',
             'name'=>'required|max:25',
             'type'=>'required|max:25', 
             'category'=>'required',
             'price'=>'required|numeric|between:0,9999.99', 
-            'amount'=>'required|between:0,999999' 
+            'amount'=>'required|between:0,999999'
         ]); 
 
         $inventory = new Inventory([ 
+            'brand'=> $request->get('brand'), 
             'name' => $request->get('name'), 
             'type' => $request->get('type'), 
             'category' => $request->get('category'), 
@@ -80,6 +82,7 @@ class inventoryController extends Controller
     public function update(Request $request, $id) 
     { 
         $request->validate([ 
+            'brand'=>'required|max:25',
             'name'=>'required|max:25',
             'type'=>'required|max:25', 
             'category'=>'required',
@@ -87,7 +90,8 @@ class inventoryController extends Controller
             'amount'=>'required|between:0,999999' 
         ]); 
 
-        $inventory = Inventory::find($id); 
+        $inventory = Inventory::find($id);
+        $inventory->brand = $request->get('brand'); 
         $inventory->name =  $request->get('name'); 
         $inventory->type = $request->get('type'); 
         $inventory->category = $request->get('category'); 

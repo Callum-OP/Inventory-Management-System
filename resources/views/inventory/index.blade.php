@@ -2,7 +2,7 @@
 @section('main') 
 <!-- Intialise array of categories and other variables --> 
 @php
-  $categories = array('Food & Drink', 'Health & Beauty', 'Clothing', 'Household');
+  $categories = array('Food & Drink', 'Health & Beauty', 'Clothing', 'Household', 'Electronics');
   $totalAmount = 0;
   $totalValue = 0;
   $amount = 0;
@@ -34,6 +34,7 @@
     <table>
       <thead> 
           <tr> 
+            <td>Brand</td> 
             <td>Name</td> 
             <td>Type</td>  
             <td>Price</td> 
@@ -46,6 +47,7 @@
         @foreach($inventory as $product)
         @if($product->category==$category)
           <tr> 
+            <td>{{$product->brand}}</td>
             <td>{{$product->name}}</td> 
             <td>{{$product->type}}</td>  
             <td>£{{$product->price}}</td> 
