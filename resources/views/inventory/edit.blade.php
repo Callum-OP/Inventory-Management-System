@@ -35,8 +35,11 @@
         <div class="form-group"> 
             <label for="category">Choose Category:</label> 
             <select class="form-control" name="category">
+                <option value="{{ $inventory->category }}">{{ $inventory->category }}</option>
             @foreach($categories as $category)
-              <option value={{$category}}>{{$category}}</option>
+                @if($category != $inventory->category)
+                <option value="{{ $category }}">{{ $category }}</option>
+                @endif
             @endforeach
             </select>
         </div> 
