@@ -8,19 +8,19 @@
   $amount = 0;
   $value = 0;
 @endphp
-<div>
   <!-- Top navigation bar featuring option to return to main menu --> 
   <a href="/" class="btn btn-white">Main Menu</a>
-  <a href="{{ route('inventory.create')}}" class="btn btn-white">Add a new product</a>
-  <h1>Products By Category</h1> 
-    <!-- Second navigation bar for user to select which category they want --> 
+  <a href="{{ route('inventory.create')}}" class="btn btn-white">Add New Product</a>
+  <h1>View Inventory By Category</h1> 
+  <!-- Second navigation bar for user to select which category they want --> 
   <div> 
     @foreach($categories as $category)
     <a href="#{{ $category }}" class="btn btn-white">{{ $category }}</a>
     @endforeach
     <a href="#Overview" class="btn btn-white">Overview</a>
     <br><br>
-  </div>  
+  </div> 
+  <!-- Display any success alerts -->  
   @if(session()->get('success')) 
     <div class="alert"> 
       {{ session()->get('success') }}   
@@ -40,31 +40,32 @@
             <td>Price</td> 
             <td>In Stock</td>
             <td>Total Value</td>
-            <td colspan = 2>Modify Product</td> 
+            <td colspan = 2>Actions Available</td> 
           </tr> 
       </thead> 
       <tbody> 
         @foreach($inventory as $product)
-        @if($product->category==$category)
+        @if($product->category == $category)
           <tr> 
             <td>{{$product->brand}}</td>
             <td>{{$product->name}}</td> 
             <td>{{$product->type}}</td>  
             <td>£{{$product->price}}</td> 
-            @if($product->amount>'0') 
-            <td>{{$product->amount}}</td> 
-            @else
-            <td>Out of Stock!</td> 
-            @endif
+            @if($product->amount > '0') 
+            <td>{{$product->amount}}</td>
             <td>£{{$product->price * $product->amount}}</td> 
+            @else
+            <td>Out of Stock!</td>
+            <td>£0</td> 
+            @endif 
             <td> 
-              <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit Details</a> 
+              <a href="{{ route('inventory.edit',$product->id)}}" class="btn btn-white">Edit details</a> 
             </td>
             <td> 
               <form action="{{ route('inventory.destroy', $product->id)}}" method="post"> 
                 @csrf 
                 @method('DELETE') 
-                <button class="btn btn-red" type="submit">Remove Product</button> 
+                <button class="btn btn-red" type="submit">Remove product</button> 
               </form> 
             </td> 
             @php

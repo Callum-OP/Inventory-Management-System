@@ -19,3 +19,5 @@ Route::get('/', function () {
 }); 
 
 Route::resource('inventory', 'inventoryController'); 
+Route::resource('stock', 'stockController'); 
+Route::resource('sales', 'salesController'); 

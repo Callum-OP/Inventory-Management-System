@@ -44,8 +44,8 @@ class inventoryController extends Controller
             'name'=>'required|max:25',
             'type'=>'required|max:25', 
             'category'=>'required',
-            'price'=>'required|numeric|between:0,9999.99', 
-            'amount'=>'required|between:0,999999'
+            'price'=>'required|numeric|between:0,9999.99|gt:0', 
+            'amount'=>'required|between:0,999999|gt:0'
         ]); 
 
         $inventory = new Inventory([ 
@@ -86,8 +86,8 @@ class inventoryController extends Controller
             'name'=>'required|max:25',
             'type'=>'required|max:25', 
             'category'=>'required',
-            'price'=>'required|numeric|between:0,9999.99', 
-            'amount'=>'required|between:0,999999' 
+            'price'=>'required|numeric|between:0,9999.99|gt:0', 
+            'amount'=>'required|between:0,999999|gt:0'
         ]); 
 
         $inventory = Inventory::find($id);

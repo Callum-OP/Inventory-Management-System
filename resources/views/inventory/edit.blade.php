@@ -16,24 +16,25 @@
         </ul> 
       </div><br/> 
     @endif 
+    <!-- Form for updating product details --> 
     <div class="border">
     <form method="post" action="{{ route('inventory.update', $inventory->id) }}"> 
         @method('PATCH')  
         @csrf 
         <div class="form-group">     
-              <label for="brand">Product Brand:</label> 
+              <label for="brand">Product brand:</label> 
               <input type="text" class="form-control" name="brand" placeholder="Enter brand of product" value="{{ $inventory->brand }}" autocomplete="off" required/> 
           </div> 
         <div class="form-group"> 
-            <label for="name">Product Name:</label> 
+            <label for="name">Product name:</label> 
             <input type="text" class="form-control" name="name" placeholder="Enter name of product" value="{{ $inventory->name }}" autocomplete="off" required/> 
         </div> 
         <div class="form-group"> 
-            <label for="type">Product Type:</label> 
+            <label for="type">Product type:</label> 
             <input type="text" class="form-control" name="type" placeholder="Enter the type of product" value="{{ $inventory->type }}" autocomplete="off" required/> 
         </div> 
         <div class="form-group"> 
-            <label for="category">Choose Category:</label> 
+            <label for="category">Choose category:</label> 
             <select class="form-control" name="category">
                 <option value="{{ $inventory->category }}">{{ $inventory->category }}</option>
             @foreach($categories as $category)
@@ -44,11 +45,11 @@
             </select>
         </div> 
         <div class="form-group"> 
-            <label for="price">Product Price:</label> 
+            <label for="price">Product price:</label> 
             <input type="text" class="form-control" name="price" placeholder="Enter price of product to be added" value="{{ $inventory->price }}" autocomplete="off" required/> 
         </div> 
         <div class="form-group"> 
-            <label for="amount">Amount of Product:</label> 
+            <label for="amount">Amount of product:</label> 
             <input type="number" class="form-control" name="amount" placeholder="Enter amount of product to be added" value="{{ $inventory->amount }}" autocomplete="off" required/> 
         </div>
         <button type="submit" class="btn btn-white">Update Product</button> 
