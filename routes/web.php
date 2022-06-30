@@ -12,7 +12,6 @@
 */
 
 use App\Inventory; 
-use Symfony\Component\Console\Input\Input;
  
 Route::get('/', function () { 
     return view('welcome'); 
