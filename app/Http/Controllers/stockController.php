@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 use App\Inventory; 
+use App\Mail\OrderShipped; 
 
 class stockController extends Controller 
 { 
@@ -49,6 +51,11 @@ class stockController extends Controller
         $inventory = Inventory::find($id);
         $inventory->amount = $inventory->amount + $request->get('amount');
         $inventory->save(); 
+
+        $order = Inventory::find($id);
+        $quantity = $request->get('amount');
+ 
+        Mail::to('bob@example.com')->send(new OrderShipped($order, $quantity));
 
         return redirect('/stock')->with('success', 'Stock Ordered!'); 
     }
