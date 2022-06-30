@@ -1,5 +1,5 @@
 # Inventory-Management-System
-An inventory management system that will have create, read, update and delete features.
+An inventory management system made using Laravel/PHP on VS Code that allows the user to add, view, edit and delete products as well as order or sell stock.
 
 ## Laravel Development Environment
 ***
